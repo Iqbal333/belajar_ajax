@@ -15,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::get();
+        $student = Student::latest()->get();
 
         return response()->json([
             'status' => true,
@@ -42,7 +42,36 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'phone_number' => 'required|numeric',
+            'email' => 'required|unique:students,email'
+        ]);
+
+        try {
+
+            $student = new Student;
+
+            $student->namej = $request->name;
+            $student->phone_number = $request->phone_number;
+            $student->email = $request->email;
+
+            $student->save();
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Failed Add Data'
+            ], 500);
+        }
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Success Add Data',
+            'results' => $student
+        ], 200);
+
+        
     }
 
     /**

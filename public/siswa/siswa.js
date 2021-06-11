@@ -67,4 +67,35 @@ $(function() {
     $('#btn_reload').on('click', function() {
        ajaxData();
     });
+
+    $('#btn_add').on('click', function() {
+        $('#form_add')[0].reset()
+        $('#modal_add').modal('show')
+    });
+
+    $('#form_add').validate({
+        submitHandler: function(form) {
+            $.ajax({
+                url: '/user/store',
+                type: 'POST',
+                data: $(form).serialize(),
+                beforeSend: function() {
+                    $('#btn_save').prop('disabled', true).html('Loading...')
+                },
+
+                success: function(res) {
+                    ajaxData()
+                    // alert(res.message)
+                    $('#modal_add').modal('hide')
+                },
+                error: function(err) {
+                    alert(err.responseJSON.message)
+                },
+                complete: function() {
+                    $('#btn_save').prop('disabled', false).html('Save')
+                }
+            })
+        }
+    })
+
 });
