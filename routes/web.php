@@ -22,4 +22,6 @@ Route::prefix('user')->group(function() {
     Route::post('/store', 'StudentController@store')->name('user.store');
     Route::put('/update/{id}', 'StudentController@update')->name('user.update');
     Route::delete('/delete/{id}', 'StudentController@destroy')->name('user.delete');
+
+    Route::get('/{id}', 'StudentController@show')->name('user.show');
 });
