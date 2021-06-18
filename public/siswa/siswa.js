@@ -17,7 +17,7 @@ function ajaxData() {
             if(res.results.length === 0) {
                 $('#t_user tbody').html(`
                     <tr>
-                        <td colspan="3" class="text-center">
+                        <td colspan="12" class="text-center">
                         <h>Data Not Found!</h></td>
                     </tr>
                 `)
@@ -27,13 +27,20 @@ function ajaxData() {
                     return `
                         <tr>
                             <td>${v.id}</td>
+                            <td>${v.nim}</td>
                             <td>${v.name}</td>
+                            <td>${v.date_of_birth}</td>
+                            <td>${v.prodi}</td>
+                            <td>${v.faculty}</td>
                             <td>${v.phone_number}</td>
+                            <td>${v.religion}</td>
                             <td>${v.email}</td>
+                            <td>${v.gender}</td>
+                            <td>${v.address}</td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-success btn-edit" data-id="${v.id}">Edit</button>
-                                    <button type="button" class="btn btn-danger btn-delete" data-id="${v.id}">Delete</button>
+                                    <button type="button" class="btn btn-danger btn-delete" data-name="${v.name}" data-id="${v.id}">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -44,7 +51,7 @@ function ajaxData() {
 
                 $('#t_user tfoot').html(`
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="10" class="text-right">
                             <b>Total Data : ${res.results.length}</b>
                         </td>
                     </tr>
@@ -54,7 +61,7 @@ function ajaxData() {
         error : function(err) {
             $('#t_user tbody').html(`
                 <tr>
-                    <td colspan="5" class="text-center>
+                    <td colspan="10" class="text-center>
                         <h4 class="text-danger">Internal Server Error</h4>
                     </td>
                 </tr>
@@ -64,7 +71,7 @@ function ajaxData() {
 
         }
     })
-    
+
 }
 
 toastr.options = {
@@ -85,6 +92,7 @@ toastr.options = {
     "hideMethod": "fadeOut"
 }
 
+
 function ajaxDetail(id, button, action) {
     $.ajax({
         url: `user/${id}`,
@@ -95,15 +103,23 @@ function ajaxDetail(id, button, action) {
         },
         success: function(res){
             if(action === 'edit') {
+                $('#edit_nim').val(res.result.nim)
                 $('#edit_name').val(res.result.name)
+                $('#edit_date_of_birth').val(res.result.date_of_birth)
+                $('#edit_prodi').val(res.result.prodi)
+                $('#edit_faculty').val(res.result.faculty)
                 $('#edit_phone_number').val(res.result.phone_number)
+                $('#edit_religion').val(res.result.religion)
                 $('#edit_email').val(res.result.email)
+                $('#edit_gender').val(res.result.gender)
+                $('#edit_address').val(res.result.address)
 
                 $('#modal_edit').modal('show')
             }
 
             if(action === 'delete') {
                 $('#delete_id').val(res.result.id)
+                $('#delete_nama').text(res.result.name)
                 $('#modal_delete').modal('show')
             }
         },
@@ -175,9 +191,16 @@ $(function() {
                 button.html('Loading...').prop('disabled', true)
             },
             success: function(res){
+                $('#edit_nim').val(res.result.nim)
                 $('#edit_name').val(res.result.name)
+                $('#edit_date_of_birth').val(res.result.date_of_birth)
+                $('#edit_prodi').val(res.result.prodi)
+                $('#edit_faculty').val(res.result.faculty)
                 $('#edit_phone_number').val(res.result.phone_number)
+                $('#edit_religion').val(res.result.religion)
                 $('#edit_email').val(res.result.email)
+                $('#edit_gender').val(res.result.gender)
+                $('#edit_address').val(res.result.address)
                 $('#edit_id').val(res.result.id)
 
                 $('#modal_edit').modal('show');
@@ -250,6 +273,8 @@ $(function() {
     $('#t_user').on('click', '.btn-delete', function() {
         let id = $(this).data('id')
         let button = $(this)
+       
+
 
         ajaxDetail(id, button, 'delete')
     })

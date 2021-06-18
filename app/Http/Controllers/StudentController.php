@@ -52,8 +52,15 @@ class StudentController extends Controller
 
             $student = new Student;
 
+            $student->nim = $request->nim;
             $student->name = $request->name;
+            $student->date_of_birth = $request->date_of_birth;
+            $student->prodi = $request->prodi;
+            $student->faculty = $request->faculty;
             $student->phone_number = $request->phone_number;
+            $student->religion = $request->religion;
+            $student->gender = $request->gender;
+            $student->address = $request->address;
             $student->email = $request->email;
 
             $student->save();
@@ -128,13 +135,19 @@ class StudentController extends Controller
         ]);
 
         try {
+            $student->nim = $request->nim;
             $student->name = $request->name;
+            $student->date_of_birth = $request->date_of_birth;
+            $student->prodi = $request->prodi;
+            $student->prodi = $request->prodi;
+            $student->faculty = $request->faculty;
             $student->phone_number = $request->phone_number;
+            $student->religion = $request->religion;
+            $student->gender = $request->gender;
+            $student->address = $request->address;
             $student->email = $request->email;
 
             $student->update();
-
-            return $student;
 
         } catch(\Exception $e) {
 
@@ -147,7 +160,7 @@ class StudentController extends Controller
 
         return response()->json([
             'status'  => true,
-            'message' => 'Success Add Data',
+            'message' => 'Success Update Data',
             'result' => $student
         ], 200);
     }
@@ -176,7 +189,7 @@ class StudentController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Success Add Data',
+            'message' => 'Success Delete Data',
             'result' => $student
         ], 200);
     }

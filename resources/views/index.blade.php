@@ -17,23 +17,34 @@
     </style>
   </head>
   <body>
-    
+
     <div class="card">
 
       <div class="card-header">
-        Data Student 
-        <button class="btn btn-primary" type="button" id="btn_reload">Reload Data</button>
-        <button class="btn btn-info" type="button" id="btn_add">New Data</button>
+        <h3 class="text-center">Data Student</h3> 
+
+        <div class="btn-group float-right">
+          <button class="btn btn-primary" type="button" id="btn_reload">Reload Data</button>
+          <button class="btn btn-info" type="button" id="btn_add">New Data</button>
+        </div>
+
       </div>
 
       <div class="card-body">
-        <table class="table" id="t_user">
+        <table class="table table-striped table-responsive" id="t_user">
           <thead>
-            <tr>
+            <tr class="text-center table-info">
               <th>ID</th>
+              <th>NIM</th>
               <th>Name</th>
+              <th>Date Of Birth</th>
+              <th>Prodi</th>
+              <th>Faculty</th>
               <th>Phone Number</th>
+              <th>Religion</th>
               <th>Email</th>
+              <th>Gender</th>
+              <th>Address</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -63,18 +74,53 @@
             <div class="modal-body">
 
               <div class="form-group">
+                <label for="nim">NIM</label>
+                <input type="text" name="nim" class="form-control" id="nim" required>
+              </div>
+
+              <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" class="form-control" id="name" required>
               </div>
 
               <div class="form-group">
-                <label for="name">Phone Number</label>
+                <label for="date_of_birth">Date Of Birth</label>
+                <input type="date" name="date_of_birth" class="form-control" id="date_of_birth" required>
+              </div>
+
+              <div class="form-group">
+                <label for="prodi">Prodi</label>
+                <input type="text" name="prodi" class="form-control" id="prodi" required>
+              </div>
+
+              <div class="form-group">
+                <label for="faculty">Faculty</label>
+                <input type="text" name="faculty" class="form-control" id="faculty" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone_number">Phone Number</label>
                 <input type="text" name="phone_number" class="form-control" id="phone_number" required>
               </div>
 
               <div class="form-group">
-                <label for="name">Email</label>
+                <label for="religion">Religion</label>
+                <input type="text" name="religion" class="form-control" id="religion" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
                 <input type="text" name="email" class="form-control" id="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="text" name="gender" class="form-control" id="gender" required>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" class="form-control" id="address" required>
               </div>
 
             </div>
@@ -103,8 +149,28 @@
             <div class="modal-body">
 
               <div class="form-group">
+                <label for="name">NIM</label>
+                <input type="text" name="nim" value="{{ old('nim') }}" class="form-control" id="edit_nim" required>
+              </div>
+
+              <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="edit_name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Date Of Birth</label>
+                <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}" class="form-control" id="edit_date_of_birth" required>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Prodi</label>
+                <input type="text" name="prodi" value="{{ old('prodi') }}" class="form-control" id="edit_prodi" required>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Faculty</label>
+                <input type="text" name="faculty" value="{{ old('faculty') }}" class="form-control" id="edit_faculty" required>
               </div>
 
               <div class="form-group">
@@ -113,9 +179,26 @@
               </div>
 
               <div class="form-group">
+                <label for="name">Religion</label>
+                <input type="text" name="religion" class="form-control" id="edit_religion" required>
+              </div>
+
+              <div class="form-group">
                 <label for="name">Email</label>
                 <input type="text" name="email" class="form-control" id="edit_email" required>
               </div>
+
+              <div class="form-group">
+                <label for="name">Gender</label>
+                <input type="text" name="gender" class="form-control" id="edit_gender" required>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" class="form-control" id="edit_address" required>
+              </div>
+
+              
 
             </div>
 
@@ -146,7 +229,7 @@
             <div class="modal-body">
 
               <h4>Apakah Anda yakin akan menghapus data ini?</h4>
-              <p>Data akan terhapus secara permanen.</p>
+              <p>Data akan terhapus secara permanen. <span id="delete_nama"></span></p>
 
             </div>
 
